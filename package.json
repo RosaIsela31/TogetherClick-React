@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "firebase": "^7.2.2",
+    "gh-pages": "^2.1.1",
+    "homepage": "https://github.com/RosaIsela31/Togetherclick-react",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0"
@@ -12,7 +14,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
