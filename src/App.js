@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import  FileUpload from './components/FileUpload';
 import './App.css';
+
 
 class App extends Component {
   constructor(){
@@ -15,14 +17,14 @@ class App extends Component {
 
 
   // Este es un método del ciclo de vida de React - Se dispara una vez que el componente ha sido renderizado
-  // componentDidMount (){
-  //   firebase.auth().onAuthStateChanged(function (user) {
-  //     // setState modifica el estado
-  //     this.setState({
-  //       user : user
-  //     });
-  //   })
-  // }
+  componentDidMount (){
+    firebase.auth().onAuthStateChanged(function (user) {
+      // setState modifica el estado
+      this.setState({
+        user : user
+      });
+    })
+  }
 
 
   handleAuth = () =>{
@@ -51,6 +53,7 @@ class App extends Component {
         <img src={this.state.user.photoURL} alt={this.state.user.displayName} />
         <p>Hola {this.state.user.displayName}</p>
         <button onClick={this.handleLogout}>Salir</button>
+        <FileUpload />
       </div>
       );
     }else{
