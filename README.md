@@ -34,15 +34,18 @@ Criterios de aceptación:
 
 - Debo poder ver las publicaciones de los proveedores en tiempo real de los proveedores y poder dar like, comentar, edital y eliminar mi comentario. 
 - También debe ser posible enviarle un mensaje al proveedor para poder contactarlo. 
+***
 
 ### 4. Como proveedor requiero que los usuarios puedan seguir mi página
 
 Criterios de aceptación: 
 
 - El follow debe ser visible en su Muro personal, también se puede remover
+***
 
 ### 5. Como novia o novio requiero poder guardar como favoritos a aquellos proveedores que han llamado mi atención para contactarlos más tarde. 
 
 Criterios de aceptación: 
 
 - No necesito tal cuál un muro, pero sí un lugar en dónde se puedan ir guardando mis favoritos (aquellos a los que le doy follow)
+***
