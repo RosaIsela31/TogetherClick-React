@@ -1,17 +1,27 @@
 {
   "name": "togetherclick",
+  "license": "MIT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.2.4",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
     "firebase": "^7.2.2",
     "gh-pages": "^2.1.1",
+    "gravatar": "^1.8.0",
     "homepage": "https://github.com/RosaIsela31/Togetherclick-react",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "request": "^2.88.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server",
+    "server": "nodemon server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -32,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^1.19.4"
   }
 }
