@@ -8,7 +8,8 @@ const connectDB = async () => {
     console.log(config.get('mongoURI'))
     await mongoose.connect(db, {
       useNewUrlParser: true,
-      useCreateIndex: true
+      useCreateIndex: true,
+      useFindAndModify: false
     })
     console.log('MongoDB connected...');
     
@@ -16,7 +17,6 @@ const connectDB = async () => {
     console.log(err.message);
     //Exit process with failure
     process.exit(1);
-    
   }
 }
 
