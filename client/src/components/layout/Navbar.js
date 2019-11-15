@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { FaApple } from "react-icons/fa";
+import { FaHandHoldingHeart } from "react-icons/fa";
+
 
 
 export const Navbar = () => {
@@ -8,12 +9,12 @@ export const Navbar = () => {
     <nav className='navbar bg-dark'>
       <h1> 
         <Link to='/'>
-          <FaApple /> TogetherClick
+           TogetherClick <FaHandHoldingHeart />
         </Link>
       </h1>
       <ul>
         <li>
-          <a href='!#'>Developers</a>
+          <a href='!#'>Proveedores</a>
         </li>
         <li>
           <Link to='/register'>Regístrate</Link>
