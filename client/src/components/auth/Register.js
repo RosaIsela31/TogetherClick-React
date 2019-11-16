@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-export const Register = () => {
+const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,26 +18,8 @@ export const Register = () => {
     if( password !== password2){
       console.log('La contraseña no coincide');
     } else {
-      const newUser = {
-        name,
-        email,
-        password
-      }
-      try {
-        const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-        const body = JSON.stringify(newUser);
-        const res = await axios.post('/api/users', body, config);
-        console.log(res.data);
-        
-      } catch (err) {
-        console.error(err.response.data);
-        
-        
-      }
+      console.log('EXITOSO');
+      
     }
   }
 
@@ -93,7 +75,7 @@ export const Register = () => {
           <input type='submit' class='btn btn-primary' value='Register' />
         </form>
         <p className='my-1'>
-         ¿Ya tienes una cuenta? <a href='login.html'>Inicia Sesión</a>
+         ¿Ya tienes una cuenta? <Link to='/login'>Inicia Sesión</Link>
 
         </p>
 
