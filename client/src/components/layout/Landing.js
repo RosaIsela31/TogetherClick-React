@@ -14,7 +14,7 @@ export const Landing = () => {
          <Link to='/register' className='btn btn-primary'>
            Regístrate
          </Link>
-         <Link to='login' className='btn btn-light'>
+         <Link to='/login' className='btn btn-light'>
            Inicia Sesión
          </Link>
         </div>
