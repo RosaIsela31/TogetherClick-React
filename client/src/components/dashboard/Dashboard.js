@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Dashboard = props => {
   return (
     <div>
-      <p>Dashboard</p>
+      <p>Dashboard - this is a mock</p>
     </div>
   )
 }
