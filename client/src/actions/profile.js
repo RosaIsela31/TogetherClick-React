@@ -69,6 +69,9 @@ export const createProfile = (
       headers: {
         'Content-Type': 'application/json'
       }
+
+
+      
     };
 
     const res = await axios.put('/api/profile', formData, config);
