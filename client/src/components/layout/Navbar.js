@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import { Link } from 'react-router-dom';
-import { FaHandHoldingHeart } from "react-icons/fa";
+// import { FaHandHoldingHeart } from "react-icons/fa";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
@@ -10,8 +10,11 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
         <li>
+          <Link to='/dashboard'>Dashboard</Link>
+        </li>
+        <li>
           <a onClick={logout} href='#!'>
-          <i className='fas fa-sign-out-alt'></i>{' '}
+          {' '}
           <span className='hide-sm'>
           logout</span></a>
         </li>
@@ -36,7 +39,7 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className='navbar bg-dark'>
       <h1> 
         <Link to='/'>
-           TogetherClick <FaHandHoldingHeart />
+           TogetherClick 
         </Link>
       </h1>
        { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>) }
