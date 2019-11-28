@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner'
 import { FaUserCircle } from "react-icons/fa";
 import DashboardActions from './DashboardActions';
-
+import Experience from './Experience';
+import Education from './Education';
 import { getCurrentProfile } from '../../actions/profile';
 
 const Dashboard = ({ 
@@ -23,7 +24,9 @@ const Dashboard = ({
       {profile !== null ? 
       <Fragment>
         <DashboardActions />
-      </Fragment> : 
+        <Experience experience = {profile.experience} />
+        <Education education = {profile.education} />
+      </Fragment> :  
       <Fragment>
         <p>Aún no tienes un perfil, por favor agrega tu información para actualizarlo</p>
         <Link to='/create-profile' className='btn btn-primary my-1'>
