@@ -1,71 +1,67 @@
-import React, {Fragment,  useState} from 'react'
-import { Link, withRouter } from 'react-router-dom';
-import { createProfile } from '../../actions/profile';
-import { FaTwitter } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-
-import './style.css'
+import React, { useEffect, useState, Fragment } from 'react';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
- 
-const CreateProfile = ({createProfile, history}) => {
-  const [formData, setFormData] = useState({
-    company: '',
-    website: '',
-    location: '',
-    status: '',
-    skills: '',
-    githubusername: '',
-    bio: '',
-    twitter: '',
-    facebook: '',
-    linkedin: '',
-    youtube: '',
-    instagram: ''
-  });
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 
-  const [displaySocialInputs, toggleSocialInputs] = useState(false);
-
-  const {
-    company,
-    website,
-    location,
-    status,
-    skills,
-    githubusername,
-    bio,
-    twitter,
-    facebook,
-    linkedin,
-    youtube,
-    instagram,
-  } = formData;
-
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-   const onSubmit = e => {
-    e.preventDefault();
-    createProfile(formData, history);
-  }
-
-  return (
-    <Fragment>
-      <h1 className='large text-primary'>Create Your Profile</h1>
+const CreateProfile = ({
+	createProfile,
+	getCurrentProfile,
+	profile: { profile, loading },
+	history
+}) => {
+	const [formData, setFormData] = useState({
+		company: '',
+		website: '',
+		location: '',
+		status: '',
+		skills: '',
+		githubusername: '',
+		bio: '',
+		twitter: '',
+		facebook: '',
+		linkedin: '',
+		youtube: '',
+		instagram: ''
+	});
+	const [displaySocialInputs, toggleSocialInputs] = useState(false);
+	const {
+		company,
+		website,
+		location,
+		status,
+		skills,
+		githubusername,
+		bio,
+		twitter,
+		facebook,
+		linkedin,
+		youtube,
+		instagram
+	} = formData;
+	const onChange = e =>
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	const onSubmit = e => {
+		e.preventDefault();
+		createProfile(formData, history);
+	};
+	useEffect(() => {
+		getCurrentProfile();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [getCurrentProfile]);
+	return loading && profile === null ? (
+		<Redirect to='/dashboard' />
+	) : (
+		<Fragment>
+			<h1 className='large text-primary'>Create Your Profile</h1>
 			<p className='lead'>
 				<i className='fas fa-user' /> Let's get some information to make your
 				profile stand out
 			</p>
 			<small>* = required field</small>
-      <form className='form' 
-      onSubmit={e => onSubmit(e)}
-      >
+			<form className='form' onSubmit={e => onSubmit(e)}>
 				<div className='form-group'>
-          <select name='status' value={status} 
-          onChange={e => onChange(e)}
-          >
+					<select name='status' value={status} onChange={e => onChange(e)}>
 						<option value='0'>* Select Professional Status</option>
 						<option value='Developer'>Developer</option>
 						<option value='Junior Developer'>Junior Developer</option>
@@ -163,7 +159,7 @@ const CreateProfile = ({createProfile, history}) => {
 				{displaySocialInputs && (
 					<Fragment>
 						<div className='form-group social-input'>
-							<FaTwitter className='iconreact'/> 
+							<i className='fab fa-twitter fa-2x' />
 							<input
 								type='text'
 								placeholder='Twitter URL'
@@ -173,7 +169,7 @@ const CreateProfile = ({createProfile, history}) => {
 							/>
 						</div>
 						<div className='form-group social-input'>
-							< FaFacebook className='iconreact'/>
+							<i className='fab fa-facebook fa-2x' />
 							<input
 								type='text'
 								placeholder='Facebook URL'
@@ -183,7 +179,7 @@ const CreateProfile = ({createProfile, history}) => {
 							/>
 						</div>
 						<div className='form-group social-input'>
-							<FaYoutube className='iconreact'/>
+							<i className='fab fa-youtube fa-2x' />
 							<input
 								type='text'
 								placeholder='YouTube URL'
@@ -193,7 +189,7 @@ const CreateProfile = ({createProfile, history}) => {
 							/>
 						</div>
 						<div className='form-group social-input'>
-							<FaLinkedin className='iconreact'/>
+							<i className='fab fa-linkedin fa-2x' />
 							<input
 								type='text'
 								placeholder='Linkedin URL'
@@ -203,7 +199,7 @@ const CreateProfile = ({createProfile, history}) => {
 							/>
 						</div>
 						<div className='form-group social-input'>
-							<FaInstagram className='iconreact'/>
+							<i className='fab fa-instagram fa-2x' />
 							<input
 								type='text'
 								placeholder='Instagram URL'
@@ -219,14 +215,17 @@ const CreateProfile = ({createProfile, history}) => {
 					Go Back
 				</Link>
 			</form>
-      
-    </Fragment>
-  )
-}
-
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
+		</Fragment>
+	);
 };
-
-
-export default connect( null, {createProfile} )(withRouter(CreateProfile))
+CreateProfile.propTypes = {
+	createProfile: PropTypes.func.isRequired,
+	getCurrentProfile: PropTypes.func.isRequired,
+	profile: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+	profile: state.profile
+});
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+	withRouter(CreateProfile)
+);
